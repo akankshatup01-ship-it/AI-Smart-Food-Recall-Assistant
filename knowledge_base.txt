@@ -1,0 +1,88 @@
+FOOD RECALL KNOWLEDGE BASE
+
+ALLERGEN RECALLS
+
+Food products may be recalled when an allergen is present but is not correctly declared on the product label.
+
+Common allergens include milk, peanuts, tree nuts, wheat, soy, egg, fish, shellfish, and sesame.
+
+For an allergen-related recall:
+- Verify the affected product.
+- Verify the affected lot or batch code.
+- Verify the recall number.
+- Review the reason for recall.
+- Review ingredient and allergen labeling.
+- Identify the distribution area.
+- Segregate affected inventory for review.
+- Final recall decisions require human review.
+
+UNDECLARED MILK
+
+A product may be recalled when milk or a milk-derived ingredient is present but is not declared on the label.
+
+For undeclared milk:
+- Verify affected lots.
+- Review ingredient and allergen labeling.
+- Check the recall reason.
+- Review distribution information.
+- Do not assume every product from the same company is affected.
+
+PEANUT RECALLS
+
+Peanut-related recalls may involve undeclared peanut or peanut-derived ingredients.
+
+For peanut recalls:
+- Verify the product description.
+- Check affected batch or lot codes.
+- Review the recall reason.
+- Review distribution information.
+- Keep affected inventory separated until evaluated.
+
+MICROBIAL CONTAMINATION
+
+Food recalls may involve pathogens such as Salmonella, Listeria monocytogenes, or E. coli.
+
+For contamination-related recalls:
+- Verify the affected product and lot.
+- Review the recall reason.
+- Review distribution information.
+- Follow applicable food safety procedures.
+- Human review is required for final operational decisions.
+
+TRACEABILITY
+
+Food recall traceability information may include:
+- Recalling firm
+- Product description
+- Recall number
+- Batch or lot code
+- Product quantity
+- Recall classification
+- Recall status
+- Recall initiation date
+- Firm location
+- Distribution pattern
+
+FDA distribution information does not necessarily provide individual customer shipment transactions.
+
+RECALL CLASSIFICATION
+
+Class I:
+A situation where use of or exposure to the product may cause serious adverse health consequences or death.
+
+Class II:
+A situation where use of or exposure to the product may cause temporary or medically reversible adverse health consequences, or where the probability of serious adverse health consequences is remote.
+
+Class III:
+A situation where use of or exposure to the product is not likely to cause adverse health consequences.
+
+AI AND HUMAN REVIEW
+
+AI-generated explanations are informational and must not replace official FDA information, regulatory requirements, food safety procedures, or human decision-making.
+
+The AI should:
+- Use retrieved knowledge when available.
+- Use the provided FDA recall record as the primary recall-specific evidence.
+- Clearly distinguish general food safety guidance from facts in the FDA recall record.
+- Avoid inventing recall facts.
+- State when information is unavailable.

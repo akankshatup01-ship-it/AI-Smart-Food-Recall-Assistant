@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        AI Smart Food Recall Investigation Assistant
+    </title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                Inter,
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            background: #f6f8fb;
+            color: #172033;
+            line-height: 1.6;
+        }
+
+        button,
+        textarea {
+            font-family: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: min(1120px, 92%);
+            margin: auto;
+        }
+
+
+        /* =================================================
+           NAVBAR
+        ================================================= */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(12px);
+
+            border-bottom:
+                1px solid #e7eaf0;
+        }
+
+        .nav-inner {
+            min-height: 74px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo {
+            width: 56px;
+            height: 46px;
+            object-fit: contain;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+
+            line-height: 1.15;
+        }
+
+        .brand-text strong {
+            font-size: 17px;
+            color: #162033;
+        }
+
+        .brand-text span {
+            font-size: 9px;
+            color: #7a8495;
+
+            letter-spacing: 0.6px;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 26px;
+
+            color: #667085;
+
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+
+        /* =================================================
+           HERO
+        ================================================= */
+
+        .hero {
+            padding: 90px 0 80px;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(79,70,229,0.08),
+                    transparent 36%
+                ),
+
+                radial-gradient(
+                    circle at bottom left,
+                    rgba(34,197,94,0.06),
+                    transparent 35%
+                ),
+
+                #ffffff;
+        }
+
+        .hero-grid {
+            display: grid;
+
+            grid-template-columns:
+                1.05fr
+                0.95fr;
+
+            gap: 55px;
+
+            align-items: center;
+        }
+
+        .hero-logo {
+            width: min(500px, 100%);
+            height: auto;
+
+            display: block;
+
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size:
+                clamp(36px, 5vw, 58px);
+
+            line-height: 1.06;
+
+            letter-spacing: -1.6px;
+
+            margin-bottom: 18px;
+        }
+
+        .hero h1 span {
+            color: #4f46e5;
+        }
+
+        .hero-description {
+            max-width: 660px;
+
+            color: #667085;
+
+            font-size: 16px;
+
+            margin-bottom: 28px;
+        }
+
+        .hero-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            border: none;
+
+            border-radius: 12px;
+
+            padding:
+                13px
+                20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #6d5dfc
+                );
+
+            color: white;
+
+            font-size: 14px;
+            font-weight: 800;
+
+            box-shadow:
+                0 10px 25px
+                rgba(79,70,229,0.18);
+
+            transition: 0.2s;
+        }
+
+        .hero-button:hover {
+            transform: translateY(-2px);
+        }
+
+
+        /* =================================================
+           HOW IT WORKS
+        ================================================= */
+
+        .hero-side {
+            background: white;
+
+            border:
+                1px solid #e6eaf0;
+
+            border-radius: 22px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 20px 55px
+                rgba(15,23,42,0.06);
+        }
+
+        .hero-side h3 {
+            margin-bottom: 18px;
+
+            font-size: 19px;
+        }
+
+        .simple-step {
+            display: flex;
+            align-items: flex-start;
+
+            gap: 13px;
+
+            padding: 13px;
+
+            margin-bottom: 10px;
+
+            border-radius: 13px;
+
+            background: #f8fafc;
+
+            border:
+                1px solid #edf0f4;
+        }
+
+        .simple-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-number {
+            width: 31px;
+            height: 31px;
+
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 9px;
+
+            background: #eef2ff;
+
+            color: #4338ca;
+
+            font-size: 12px;
+
+            font-weight: 900;
+        }
+
+        .simple-step strong {
+            display: block;
+
+            font-size: 13px;
+
+            margin-bottom: 2px;
+        }
+
+        .simple-step span {
+            display: block;
+
+            font-size: 11px;
+
+            color: #7a8495;
+        }
+
+
+        /* =================================================
+           INVESTIGATION SECTION
+        ================================================= */
+
+        .section {
+            padding: 78px 0;
+        }
+
+        .section-header {
+            margin-bottom: 28px;
+        }
+
+        .section-label {
+            color: #4f46e5;
+
+            font-size: 11px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 6px;
+        }
+
+        .section-header h2 {
+            font-size:
+                clamp(
+                    28px,
+                    4vw,
+                    40px
+                );
+
+            margin-bottom: 8px;
+        }
+
+        .section-header p {
+            color: #6b7280;
+
+            max-width: 700px;
+
+            font-size: 14px;
+        }
+
+        .investigation-card {
+            background: white;
+
+            border:
+                1px solid #e4e8ef;
+
+            border-radius: 22px;
+
+            padding: 28px;
+
+            box-shadow:
+                0 18px 50px
+                rgba(15,23,42,0.05);
+        }
+
+        .input-label {
+            display: block;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            margin-bottom: 9px;
+        }
+
+        textarea {
+            width: 100%;
+
+            min-height: 145px;
+
+            resize: vertical;
+
+            border:
+                1px solid #d9dfe8;
+
+            border-radius: 14px;
+
+            padding: 17px;
+
+            background: #fbfcfe;
+
+            color: #172033;
+
+            font-size: 14px;
+
+            outline: none;
+
+            transition: 0.2s;
+        }
+
+        textarea:focus {
+            border-color: #6366f1;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(99,102,241,0.10);
+        }
+
+        .form-footer {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+            margin-top: 15px;
+        }
+
+        .helper-text {
+            font-size: 12px;
+
+            color: #7a8495;
+        }
+
+        .start-button {
+            border: none;
+
+            border-radius: 11px;
+
+            padding:
+                12px
+                18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #6d5dfc
+                );
+
+            color: #ffffff;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            transition: 0.2s;
+        }
+
+        .start-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .start-button:disabled {
+            opacity: 0.65;
+
+            cursor: not-allowed;
+
+            transform: none;
+        }
+
+
+        /* =================================================
+           PROGRESS
+        ================================================= */
+
+        .progress {
+            margin-top: 20px;
+
+            padding: 16px;
+
+            border-radius: 14px;
+
+            background: #f8fafc;
+
+            border:
+                1px solid #edf0f4;
+        }
+
+        .progress.hidden {
+            display: none;
+        }
+
+        .step {
+            padding: 6px 0;
+
+            font-size: 12px;
+
+            color: #8a93a2;
+        }
+
+        .step.active {
+            color: #4f46e5;
+            font-weight: 800;
+        }
+
+        .step.completed {
+            color: #15803d;
+            font-weight: 800;
+        }
+
+        .step::before {
+            content: "○";
+
+            display: inline-block;
+
+            width: 20px;
+        }
+
+        .step.active::before {
+            content: "◉";
+        }
+
+        .step.completed::before {
+            content: "✓";
+        }
+
+
+        /* =================================================
+           RESULT SECTION
+        ================================================= */
+
+        .result {
+            margin-top: 25px;
+
+            background: white;
+
+            border:
+                1px solid #e4e8ef;
+
+            border-radius: 22px;
+
+            padding: 28px;
+
+            box-shadow:
+                0 18px 50px
+                rgba(15,23,42,0.05);
+        }
+
+        .result.hidden {
+            display: none;
+        }
+
+        .result-heading {
+            display: flex;
+
+            align-items: flex-start;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 22px;
+        }
+
+        .result-heading h2 {
+            font-size: 23px;
+        }
+
+        .match-count {
+            display: inline-flex;
+
+            align-items: center;
+
+            padding:
+                7px
+                11px;
+
+            border-radius: 999px;
+
+            background: #eef2ff;
+
+            color: #4338ca;
+
+            font-size: 10px;
+
+            font-weight: 900;
+        }
+
+        .result-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+        }
+
+        .result-item {
+            padding: 15px;
+
+            border-radius: 13px;
+
+            background: #f8fafc;
+
+            border:
+                1px solid #edf0f4;
+        }
+
+        .result-item.full {
+            grid-column: 1 / -1;
+        }
+
+        .result-item small {
+            display: block;
+
+            font-size: 9px;
+
+            color: #7c8797;
+
+            text-transform: uppercase;
+
+            font-weight: 800;
+
+            margin-bottom: 5px;
+        }
+
+        .result-item p {
+            font-size: 12px;
+
+            font-weight: 700;
+
+            word-break: break-word;
+        }
+
+
+        /* =================================================
+           ACTION BUTTONS
+        ================================================= */
+
+        .result-actions {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-top: 22px;
+        }
+
+        .result-action {
+            border: none;
+
+            border-radius: 10px;
+
+            padding:
+                11px
+                15px;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            transition: 0.2s;
+        }
+
+        .result-action:hover {
+            transform: translateY(-2px);
+        }
+
+        .ai-action {
+            background: #eef2ff;
+
+            color: #4338ca;
+        }
+
+        .trace-action {
+            background: #ecfdf3;
+
+            color: #027a48;
+        }
+
+        .report-action {
+            background: #fff7ed;
+
+            color: #9a3412;
+        }
+
+
+        /* =================================================
+           MATCH INFORMATION
+           ================================================= */
+
+        .match-info {
+            margin-top: 20px;
+
+            padding: 15px;
+
+            border-radius: 13px;
+
+            background: #fbfcfe;
+
+            border:
+                1px solid #edf0f4;
+
+            color: #667085;
+
+            font-size: 12px;
+        }
+
+
+        /*
+           Hidden:
+           script.js may use this element internally.
+           We do not show repeated result cards.
+        */
+
+        #allRecallResults {
+            display: none;
+        }
+
+
+        /* =================================================
+           MODAL
+        ================================================= */
+
+        .modal-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 99999;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 18px;
+
+            background:
+                rgba(
+                    8,
+                    15,
+                    31,
+                    0.68
+                );
+
+            backdrop-filter: blur(6px);
+        }
+
+        .modal {
+            width: min(
+                880px,
+                96vw
+            );
+
+            max-height: 90vh;
+
+            overflow: auto;
+
+            background: #ffffff;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 30px 90px
+                rgba(0,0,0,0.28);
+        }
+
+        .modal-top {
+            position: sticky;
+
+            top: 0;
+
+            z-index: 2;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding:
+                18px
+                22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #f8f9ff
+                );
+
+            border-bottom:
+                1px solid #e7ebf1;
+        }
+
+        .modal-title {
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+        }
+
+        .modal-icon {
+            width: 43px;
+            height: 43px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 12px;
+
+            background: #eef2ff;
+
+            font-size: 21px;
+        }
+
+        .modal-title h2 {
+            font-size: 18px;
+        }
+
+        .modal-title small {
+            color: #7a8495;
+
+            font-size: 11px;
+        }
+
+        .close {
+            width: 34px;
+            height: 34px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #f1f3f6;
+
+            font-size: 18px;
+        }
+
+        .modal-body {
+            padding: 23px;
+        }
+
+
+        /* =================================================
+           RAG ANSWER
+        ================================================= */
+
+        .rag-question-box {
+            padding: 14px;
+
+            border-radius: 12px;
+
+            background: #f8fafc;
+
+            border:
+                1px solid #e7ebf0;
+
+            margin-bottom: 18px;
+        }
+
+        .rag-question-box small {
+            display: block;
+
+            color: #7c8797;
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 4px;
+        }
+
+        .rag-answer {
+            padding: 20px;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f8faff,
+                    #f7f5ff
+                );
+
+            border:
+                1px solid #dfe5f6;
+        }
+
+        .rag-answer h3 {
+            font-size: 16px;
+
+            margin-bottom: 12px;
+        }
+
+        .rag-content {
+            font-size: 13px;
+
+            color: #293548;
+
+            line-height: 1.8;
+        }
+
+        .rag-content p {
+            margin: 7px 0;
+        }
+
+        .rag-content ul {
+            padding-left: 20px;
+            margin: 8px 0;
+        }
+
+        .rag-content h1,
+        .rag-content h2,
+        .rag-content h3 {
+            margin:
+                16px 0
+                7px;
+        }
+
+        .modal-context {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 10px;
+
+            margin-top: 18px;
+        }
+
+        .context-item {
+            padding: 11px;
+
+            border-radius: 11px;
+
+            background: #f8fafc;
+
+            border:
+                1px solid #edf0f4;
+        }
+
+        .context-item small {
+            display: block;
+
+            color: #7a8495;
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 4px;
+        }
+
+        .context-item strong {
+            display: block;
+
+            font-size: 11px;
+        }
+
+        .modal-note {
+            margin-top: 16px;
+
+            padding: 12px;
+
+            border-radius: 11px;
+
+            background: #fff7ed;
+
+            border:
+                1px solid #fed7aa;
+
+            color: #9a3412;
+
+            font-size: 11px;
+        }
+
+
+        /* =================================================
+           LOADING
+        ================================================= */
+
+        .loading {
+            text-align: center;
+
+            padding: 30px 10px;
+        }
+
+        .spinner {
+            width: 38px;
+            height: 38px;
+
+            margin:
+                0 auto
+                12px;
+
+            border:
+                4px solid #e5e7eb;
+
+            border-top-color:
+                #4f46e5;
+
+            border-radius: 50%;
+
+            animation:
+                spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+
+            to {
+                transform:
+                    rotate(360deg);
+            }
+
+        }
+
+
+        /* =================================================
+           EMPTY / ERROR
+        ================================================= */
+
+        .message-box {
+            padding: 18px;
+
+            border-radius: 13px;
+
+            margin-top: 20px;
+
+            font-size: 13px;
+        }
+
+        .error-box {
+            background: #fef2f2;
+
+            border:
+                1px solid #fecaca;
+
+            color: #991b1b;
+        }
+
+        .empty-box {
+            background: #f8fafc;
+
+            border:
+                1px solid #e5e7eb;
+
+            color: #667085;
+        }
+
+
+        /* =================================================
+           FOOTER
+        ================================================= */
+
+        footer {
+            background: #111827;
+
+            color: #d1d5db;
+
+            padding: 28px 0;
+        }
+
+        .footer {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+        .footer small {
+            color: #9ca3af;
+        }
+
+
+        /* =================================================
+           RESPONSIVE
+        ================================================= */
+
+        @media (max-width: 900px) {
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .result-grid,
+            .modal-context {
+                grid-template-columns: 1fr;
+            }
+
+            .result-item.full {
+                grid-column: auto;
+            }
+
+            .result-heading {
+                flex-direction: column;
+            }
+
+            .form-footer {
+                align-items: stretch;
+            }
+
+            .start-button {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =================================================
+         NAVBAR
+    ================================================= -->
+
+    <header class="navbar">
+
+        <div class="container nav-inner">
+
+            <a
+                href="#home"
+                class="brand"
+            >
+
+                <img
+                    src="logo.png"
+                    alt="Food Recall AI"
+                    class="brand-logo"
+                >
+
+                <div class="brand-text">
+
+                    <strong>
+                        Food Recall AI
+                    </strong>
+
+                    <span>
+                        SMART FOOD RECALL ASSISTANT
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <nav class="nav-links">
+
+                <a href="#home">
+                    Home
+                </a>
+
+                <a href="#investigation">
+                    Investigation
+                </a>
+
+                <a href="#results">
+                    Results
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =================================================
+         HOME
+    ================================================= -->
+
+    <section
+        id="home"
+        class="hero"
+    >
+
+        <div class="container hero-grid">
+
+
+            <div>
+
+                <img
+                    src="logo.png"
+                    alt="Food Recall AI"
+                    class="hero-logo"
+                >
+
+
+                <h1>
+
+                    Food Recall
+
+                    <span>
+                        Investigation Assistant
+                    </span>
+
+                </h1>
+
+
+                <p class="hero-description">
+
+                    Search food recall information,
+                    understand the reason for a recall,
+                    review affected products and
+                    get AI-assisted answers to
+                    food-safety questions.
+
+                </p>
+
+
+                <button
+                    class="hero-button"
+                    onclick="scrollToSection('investigation')"
+                >
+
+                    Start Investigation
+
+                </button>
+
+            </div>
+
+
+
+            <div class="hero-side">
+
+                <h3>
+                    How it works
+                </h3>
+
+
+                <div class="simple-step">
+
+                    <div class="step-number">
+                        1
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Enter your question
+                        </strong>
+
+                        <span>
+                            Search for a recall
+                            or ask a food-safety question.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="simple-step">
+
+                    <div class="step-number">
+                        2
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Review the result
+                        </strong>
+
+                        <span>
+                            See the relevant recall
+                            information clearly.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="simple-step">
+
+                    <div class="step-number">
+                        3
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Use the available actions
+                        </strong>
+
+                        <span>
+                            Analyze, trace the product
+                            or generate a report.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         INVESTIGATION
+    ================================================= -->
+
+    <section
+        id="investigation"
+        class="section"
+    >
+
+        <div class="container">
+
+
+            <div class="section-header">
+
+                <div class="section-label">
+                    INVESTIGATION
+                </div>
+
+                <h2>
+                    Ask or Search
+                </h2>
+
+                <p>
+                    Enter a recall search or ask
+                    a food-safety question.
+                </p>
+
+            </div>
+
+
+            <div class="investigation-card">
+
+
+                <label
+                    for="incident"
+                    class="input-label"
+                >
+
+                    Your Question
+
+                </label>
+
+
+                <textarea
+                    id="incident"
+                    placeholder="Examples:
+
+Show milk recalls
+
+Show peanut recalls
+
+Show Class II recalls
+
+Why was this product recalled?
+
+What are the common causes of food recalls?"
+                ></textarea>
+
+
+                <div class="form-footer">
+
+                    <div class="helper-text">
+
+                        Enter your question and
+                        click Start Investigation.
+
+                    </div>
+
+
+                    <button
+                        id="investigateBtn"
+                        class="start-button"
+                        onclick="startInvestigation()"
+                    >
+
+                        Start Investigation
+
+                    </button>
+
+                </div>
+
+
+                <!-- PROGRESS -->
+
+                <div
+                    id="agentProgress"
+                    class="progress hidden"
+                >
+
+                    <div
+                        id="step1"
+                        class="step"
+                    >
+                        Understanding question
+                    </div>
+
+                    <div
+                        id="step2"
+                        class="step"
+                    >
+                        Searching recall data
+                    </div>
+
+                    <div
+                        id="step3"
+                        class="step"
+                    >
+                        Checking product details
+                    </div>
+
+                    <div
+                        id="step4"
+                        class="step"
+                    >
+                        Reviewing distribution
+                    </div>
+
+                    <div
+                        id="step5"
+                        class="step"
+                    >
+                        Preparing answer
+                    </div>
+
+                    <div
+                        id="step6"
+                        class="step"
+                    >
+                        Completing investigation
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         RESULTS
+    ================================================= -->
+
+    <section
+        id="results"
+        class="section"
+    >
+
+        <div class="container">
+
+
+            <div class="section-header">
+
+                <div class="section-label">
+                    RESULTS
+                </div>
+
+                <h2>
+                    Investigation Result
+                </h2>
+
+                <p>
+                    Review the information related
+                    to the selected recall.
+                </p>
+
+            </div>
+
+
+            <div
+                id="result"
+                class="result hidden"
+            >
+
+
+                <div class="result-heading">
+
+                    <h2>
+                        Recall Details
+                    </h2>
+
+
+
+                </div>
+
+
+
+                <div class="result-grid">
+
+
+                    <div class="result-item">
+
+                        <small>
+                            Product
+                        </small>
+
+                        <p id="product">
+                            --
+                        </p>
+
+                    </div>
+
+
+                    <div class="result-item">
+
+                        <small>
+                            Recall Number
+                        </small>
+
+                        <p id="recallNumber">
+                            --
+                        </p>
+
+                    </div>
+
+
+                    <div class="result-item">
+
+                        <small>
+                            Classification
+                        </small>
+
+                        <p id="classification">
+                            --
+                        </p>
+
+                    </div>
+
+
+                    <div class="result-item">
+
+                        <small>
+                            Status
+                        </small>
+
+                        <p id="status">
+                            --
+                        </p>
+
+                    </div>
+
+
+                    <div class="result-item">
+
+                        <small>
+                            Recalling Firm
+                        </small>
+
+                        <p id="recallingFirm">
+                            --
+                        </p>
+
+                    </div>
+
+
+                    <div class="result-item">
+
+                        <small>
+                            Quantity
+                        </small>
+
+                        <p id="quantity">
+                            --
+                        </p>
+
+                    </div>
+
+
+                    <div class="result-item full">
+
+                        <small>
+                            Reason for Recall
+                        </small>
+
+                        <p id="reason">
+                            --
+                        </p>
+
+                    </div>
+
+
+                    <div class="result-item full">
+
+                        <small>
+                            Batch / Code
+                        </small>
+
+                        <p id="batch">
+                            --
+                        </p>
+
+                    </div>
+
+
+                    <div class="result-item full">
+
+                        <small>
+                            Distribution
+                        </small>
+
+                        <p id="destination">
+                            --
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- ONLY THREE ACTION BUTTONS -->
+
+                <div class="result-actions">
+
+
+                    <button
+                        class="result-action ai-action"
+                        onclick="openRAGKnowledge()"
+                    >
+
+                        AI Analysis
+
+                    </button>
+
+
+                    <button
+                        class="result-action trace-action"
+                        onclick="openTraceability()"
+                    >
+
+                        Traceability
+
+                    </button>
+
+
+                    <button
+                        class="result-action report-action"
+                        onclick="generateReport()"
+                    >
+
+                        Generate Report
+
+                    </button>
+
+
+                </div>
+
+
+
+                <div class="match-info">
+
+                    The information above is based on
+                    the selected recall record.
+                    Review the official recall details
+                    before making a final decision.
+
+                </div>
+
+
+
+                <!-- Kept for script.js compatibility.
+                     Hidden so duplicate cards do not appear. -->
+
+                <div
+                    id="allRecallResults"
+                ></div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         FOOTER
+    ================================================= -->
+
+    <footer>
+
+        <div class="container footer">
+
+            <strong>
+                Food Recall AI
+            </strong>
+
+            <small>
+                Smart Food Recall Investigation Assistant
+            </small>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =================================================
+         ONLY EXTERNAL JAVASCRIPT
+    ================================================= -->
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>

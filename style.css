@@ -1,0 +1,710 @@
+/* ================================
+   AI SMART FOOD RECALL ASSISTANT
+   Main Stylesheet
+================================ */
+
+
+/* ---------- Basic Reset ---------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fb;
+    color: #1f2937;
+    line-height: 1.6;
+}
+
+
+/* ---------- Navigation Bar ---------- */
+
+.navbar {
+    width: 100%;
+    min-height: 70px;
+    padding: 0 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: bold;
+    color: #173f5f;
+}
+
+.navbar nav {
+    display: flex;
+    gap: 28px;
+}
+
+.navbar nav a {
+    text-decoration: none;
+    color: #4b5563;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.navbar nav a:hover {
+    color: #1976d2;
+}
+
+.status {
+    font-size: 14px;
+    font-weight: 600;
+    color: #15803d;
+    background: #ecfdf5;
+    padding: 8px 14px;
+    border-radius: 20px;
+}
+
+
+/* ---------- Hero Section ---------- */
+
+.hero {
+    min-height: 560px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 80px 7%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef7ff 0%,
+            #ffffff 55%,
+            #f0fdf4 100%
+        );
+}
+
+.hero-content {
+    max-width: 850px;
+}
+
+.tagline {
+    color: #1976d2;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    font-size: 56px;
+    line-height: 1.12;
+    color: #173f5f;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    display: block;
+    color: #1976d2;
+}
+
+.description {
+    max-width: 700px;
+    font-size: 18px;
+    color: #5b6472;
+    margin-bottom: 35px;
+}
+
+
+/* ---------- Buttons ---------- */
+
+.primary-btn,
+.investigate-btn {
+    border: none;
+    cursor: pointer;
+
+    padding: 14px 25px;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.primary-btn {
+    background: #1976d2;
+    color: white;
+}
+
+.primary-btn:hover {
+    background: #125ea8;
+    transform: translateY(-2px);
+}
+
+.investigate-btn {
+    width: 100%;
+    margin-top: 20px;
+
+    background: #173f5f;
+    color: white;
+}
+
+.investigate-btn:hover {
+    background: #0f2d44;
+}
+
+
+/* ---------- AI Section ---------- */
+
+.ai-section {
+    padding: 50px 7%;
+    background: #ffffff;
+}
+
+.ai-card {
+    max-width: 1100px;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    gap: 25px;
+
+    padding: 30px;
+
+    background: #f8fbff;
+
+    border: 1px solid #dbeafe;
+    border-radius: 18px;
+}
+
+.ai-icon {
+    min-width: 65px;
+    height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #dbeafe;
+    border-radius: 16px;
+
+    font-size: 32px;
+}
+
+.ai-card h2 {
+    color: #173f5f;
+    margin-bottom: 7px;
+}
+
+.ai-card p {
+    color: #64748b;
+}
+
+
+/* ---------- General Section ---------- */
+
+.investigation,
+.results-section,
+.about {
+    padding: 80px 7%;
+}
+
+.section-heading {
+    max-width: 800px;
+    margin: 0 auto 35px;
+    text-align: center;
+}
+
+.small-title {
+    color: #1976d2;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.section-heading h2 {
+    font-size: 34px;
+    color: #173f5f;
+    margin-bottom: 10px;
+}
+
+.section-heading p {
+    color: #6b7280;
+}
+
+
+/* ---------- Investigation Box ---------- */
+
+.investigation-box {
+    max-width: 900px;
+    margin: auto;
+
+    padding: 35px;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
+}
+
+.investigation-box label {
+    display: block;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    margin-bottom: 12px;
+
+    color: #173f5f;
+}
+
+textarea {
+    width: 100%;
+    min-height: 180px;
+
+    resize: vertical;
+
+    padding: 16px;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+
+    font-family: inherit;
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.3s;
+}
+
+textarea:focus {
+    border-color: #1976d2;
+
+    box-shadow:
+        0 0 0 3px rgba(25, 118, 210, 0.1);
+}
+
+textarea::placeholder {
+    color: #9ca3af;
+}
+
+
+/* ---------- Progress Section ---------- */
+
+.progress-container {
+    max-width: 900px;
+    margin: 35px auto 0;
+
+    padding: 30px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+}
+
+.progress-container h3 {
+    color: #173f5f;
+    margin-bottom: 25px;
+}
+
+
+.progress-step {
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 15px;
+
+    margin-bottom: 12px;
+
+    border-radius: 12px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e5e7eb;
+
+    transition: 0.3s;
+}
+
+.progress-step > span {
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e2e8f0;
+
+    color: #475569;
+
+    font-weight: bold;
+}
+
+.progress-step strong {
+    color: #334155;
+}
+
+.progress-step p {
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+
+/* Completed Step */
+
+.progress-step.done {
+    background: #f0fdf4;
+
+    border-color: #bbf7d0;
+}
+
+.progress-step.done > span {
+    background: #16a34a;
+    color: white;
+}
+
+
+/* ---------- Results ---------- */
+
+.results-section {
+    background: #eef5fa;
+}
+
+.result-card {
+    max-width: 1000px;
+    margin: auto;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    padding: 35px;
+
+    border: 1px solid #dbe4ec;
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
+}
+
+.result-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+}
+
+.result-header h2 {
+    color: #173f5f;
+}
+
+.confidence {
+    background: #ecfdf5;
+    color: #15803d;
+
+    padding: 8px 15px;
+
+    border-radius: 20px;
+
+    font-size: 14px;
+}
+
+
+/* ---------- Result Grid ---------- */
+
+.result-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+}
+
+.result-item {
+    padding: 22px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+}
+
+.result-item label {
+    display: block;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    margin-bottom: 6px;
+}
+
+.result-item p {
+    color: #173f5f;
+
+    font-size: 18px;
+
+    font-weight: bold;
+}
+
+
+/* ---------- Recommendations ---------- */
+
+.recommendations {
+    padding: 25px;
+
+    background: #f8fbff;
+
+    border-radius: 14px;
+
+    border-left: 4px solid #1976d2;
+}
+
+.recommendations h3 {
+    color: #173f5f;
+    margin-bottom: 15px;
+}
+
+.recommendations ul {
+    list-style: none;
+}
+
+.recommendations li {
+    padding: 8px 0;
+
+    color: #475569;
+}
+
+
+/* ---------- About ---------- */
+
+.about {
+    background: #ffffff;
+    text-align: center;
+}
+
+.about > p {
+    max-width: 750px;
+
+    margin: 0 auto 40px;
+
+    color: #64748b;
+}
+
+.features {
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+.features > div {
+    padding: 25px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 15px;
+
+    transition: 0.3s;
+}
+
+.features > div:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.07);
+}
+
+.features > div:first-line {
+    font-size: 25px;
+}
+
+.features h3 {
+    color: #173f5f;
+
+    margin: 10px 0;
+}
+
+.features p {
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+
+/* ---------- Footer ---------- */
+
+footer {
+    padding: 30px 7%;
+
+    background: #173f5f;
+
+    color: #dbeafe;
+
+    text-align: center;
+
+    font-size: 14px;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+
+/* ---------- Hidden ---------- */
+
+.hidden {
+    display: none;
+}
+
+
+/* ---------- Responsive Design ---------- */
+
+@media (max-width: 900px) {
+
+    .navbar {
+        padding: 15px 5%;
+
+        flex-wrap: wrap;
+
+        gap: 15px;
+    }
+
+    .navbar nav {
+        order: 3;
+
+        width: 100%;
+
+        justify-content: center;
+    }
+
+    .hero {
+        padding: 70px 5%;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .investigation,
+    .results-section,
+    .about {
+        padding: 60px 5%;
+    }
+
+    .features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .navbar {
+        justify-content: center;
+    }
+
+    .navbar nav {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .status {
+        display: none;
+    }
+
+    .hero {
+        min-height: 500px;
+    }
+
+    .hero h1 {
+        font-size: 35px;
+    }
+
+    .description {
+        font-size: 16px;
+    }
+
+    .ai-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .section-heading h2 {
+        font-size: 28px;
+    }
+
+    .investigation-box,
+    .progress-container,
+    .result-card {
+        padding: 22px;
+    }
+
+    .result-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .result-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+}
+.recall-card {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 15px;
+    margin: 12px 0;
+    background: #f8f9fa;
+}
+
+.recall-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.recall-field {
+    margin: 7px 0;
+    line-height: 1.5;
+}
+
+.recall-field strong {
+    display: inline-block;
+    min-width: 120px;
+}
